@@ -1,0 +1,6 @@
+#summary Needed hardware for examples run
+#labels Phase-Deploy
+
+= Needed hardware for examples run =
+
+* [http://www.aliexpress.com/item/Freeshipping-Raspberry-Pi-Model-B-512MB-RAM-PI-model-B-plus-BT0030-RP/2003120852.html?s=p Raspberry Pi Model B+] 
