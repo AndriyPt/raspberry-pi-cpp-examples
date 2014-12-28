@@ -1,0 +1,8 @@
+#summary How to setup Raspberry Pi without USB keyboard, mouse, HDMI monitor and TV
+#labels Phase-Implementation
+
+= How to setup Raspberry Pi without USB keyboard, mouse, HDMI monitor and TV =
+
+Raspberry can be setup using home computer or laptop which is running different OS. We will use Ubuntu PC.
+
+[http://www.learn2crack.com/2013/08/setup-sd-card-for-raspberry-pi.html Here] you can find how to install Raspbian on micro SD card from PC.
