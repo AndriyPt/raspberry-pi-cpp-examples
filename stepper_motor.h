@@ -1,7 +1,7 @@
 #ifndef STEPPER_MOTOR_H_
 #define STEPPER_MOTOR_H_
 
-#include "gpiomanager.h"
+#include "gpio_manager.h"
 
 void stepperMotor(GpioManager &gpioManager);
 

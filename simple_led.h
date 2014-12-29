@@ -1,7 +1,7 @@
 #ifndef SIMPLE_LED_H_
 #define SIMPLE_LED_H_
 
-#include "gpiomanager.h"
+#include "gpio_manager.h"
 
 void simpleLed(GpioManager &gpioManager);
 
