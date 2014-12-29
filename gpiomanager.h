@@ -13,7 +13,9 @@ private:
 public:
 	GpioManager();
 
-	uint8_t read(uint8_t gpioNumber);
+	void setReadMode(uint8_t gpioNumber);
+
+	bool read(uint8_t gpioNumber);
 	void write(uint8_t gpioNumber, bool value);
 
 	virtual ~GpioManager();
