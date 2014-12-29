@@ -42,16 +42,21 @@ GpioManager::~GpioManager() {
 	munmap((void*)gpio, BLOCK_SIZE);
 }
 
-uint8_t GpioManager::read(uint8_t gpioNumber) {
-
+void GpioManager::setReadMode(uint8_t gpioNumber) {
 	*(gpio + (gpioNumber / 10)) &= ~(7 << ((gpioNumber % 10) * 3));
+}
+
+
+bool GpioManager::read(uint8_t gpioNumber) {
+
+	setReadMode(gpioNumber);
 
 	return (*(gpio + 13) & (1 << gpioNumber));
 }
 
 void GpioManager::write(uint8_t gpioNumber, bool value) {
 
-	*(gpio + (gpioNumber / 10)) &= ~(7 << ((gpioNumber % 10) * 3));
+	setReadMode(gpioNumber);
 
 	*(gpio + (gpioNumber / 10)) |=  (1 << ((gpioNumber % 10) * 3));
 
