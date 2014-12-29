@@ -1,7 +1,7 @@
 #ifndef PIR_SENSOR_H_
 #define PIR_SENSOR_H_
 
-#include "gpiomanager.h"
+#include "gpio_manager.h"
 
 void pirSensor(GpioManager &gpioManager);
 
