@@ -1,0 +1,8 @@
+#summary AOSONG DTH11 temperature and humidity sensor
+
+= AOSONG DTH11 temperature and humidity sensor =
+
+In this example we will use 
+[http://www.aliexpress.com/item/NEW-DTH11-humidity-sensor-The-probe-digital-output/32245696641.html AOSONG DTH11 temperature and humidity sensor]
+
+It can be connected to Rasperry Pi as following...
