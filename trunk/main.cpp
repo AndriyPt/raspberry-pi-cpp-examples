@@ -1,6 +1,7 @@
 #include "gpio_manager.h"
 
 #include "simple_led.h"
+#include "rgb_led.h"
 #include "stepper_motor.h"
 #include "pir_sensor.h"
 
@@ -17,8 +18,9 @@ int main(int argc, char **argv) {
 	else {
 		printf("Please select which example to run \n"
 				"  1 - Simple LED Blinking \n"
-				"  2 - Stepper Motor \n"
-				"  3 - PIR (Passive Infrared) sensor \n");
+				"  2 - RGB LED Blinking \n"
+				"  3 - Stepper Motor \n"
+				"  4 - PIR (Passive Infrared) sensor \n");
 
 		scanf("%ld", &selection);
 	}
@@ -33,11 +35,16 @@ int main(int argc, char **argv) {
 		}
 
 		case 2: {
-			stepperMotor(gpioManager);
+			rgbLed(gpioManager);
 			break;
 		}
 
 		case 3: {
+			stepperMotor(gpioManager);
+			break;
+		}
+
+		case 4: {
 			pirSensor(gpioManager);
 			break;
 		}
