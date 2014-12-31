@@ -4,6 +4,7 @@
 #include "rgb_led.h"
 #include "stepper_motor.h"
 #include "pir_sensor.h"
+#include "temperature_humidity.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,7 +21,8 @@ int main(int argc, char **argv) {
 				"  1 - Simple LED Blinking \n"
 				"  2 - RGB LED Blinking \n"
 				"  3 - Stepper Motor \n"
-				"  4 - PIR (Passive Infrared) sensor \n");
+				"  4 - PIR (Passive Infrared) sensor \n"
+				"  5 - Temperature and humidity sensor \n");
 
 		scanf("%ld", &selection);
 	}
@@ -46,6 +48,11 @@ int main(int argc, char **argv) {
 
 		case 4: {
 			pirSensor(gpioManager);
+			break;
+		}
+
+		case 5: {
+			temperatureHumiditySensor(gpioManager);
 			break;
 		}
 
