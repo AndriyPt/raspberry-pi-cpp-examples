@@ -1,66 +1,84 @@
-#include "gpio_manager.h"
 
-#include "simple_led.h"
-#include "rgb_led.h"
-#include "stepper_motor.h"
-#include "pir_sensor.h"
-#include "temperature_humidity.h"
+#include <iostream>
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "common/util/utils.h"
+#include "common/gpio/gpio_manager.h"
+#include "common/error/application_error.h"
 
-int main(int argc, char **argv) {
+#include "example/led/led.h"
+#include "example/motor/stepper_motor.h"
+#include "example/pir/pir_sensor.h"
+#include "example/temperature/temperature_humidity.h"
 
+
+int main(int argc, char **argv)
+{
 	long selection = 0;
 
-	if (argc > 1) {
-		selection = strtol(argv[1], NULL, 10);
+	if (argc > 1)
+	{
+		selection = common::util::parse_string<long>(argv[1]);
 	}
-	else {
-		printf("Please select which example to run \n"
-				"  1 - Simple LED Blinking \n"
-				"  2 - RGB LED Blinking \n"
-				"  3 - Stepper Motor \n"
-				"  4 - PIR (Passive Infrared) sensor \n"
-				"  5 - Temperature and humidity sensor \n");
+	else
+	{
+		std::cout << "Please select which example to run" << std::endl
+				<< "  1 - Simple LED Blinking" << std::endl
+				<< "  2 - RGB LED Blinking" << std::endl
+				<< "  3 - Stepper Motor" << std::endl
+				<< "  4 - PIR (Passive Infrared) sensor" << std::endl
+				<< "  5 - Temperature and humidity sensor" << std::endl;
 
-		scanf("%ld", &selection);
+		std::cin >> selection;
 	}
 
-	GpioManager gpioManager;
+	common::gpio::GPIO_manager gpio_manager;
 
-	switch (selection) {
+	try
+	{
+		switch (selection)
+		{
+			case 1:
+			{
+				example::led::simple(21, gpio_manager);
+				break;
+			}
 
-		case 1: {
-			simpleLed(gpioManager);
-			break;
+			case 2:
+			{
+			    example::led::rgb(12, 16, 20, gpio_manager);
+				break;
+			}
+
+			case 3:
+			{
+			    example::motor::stepper({ 12, 16, 20, 21 }, gpio_manager);
+				break;
+			}
+
+			case 4:
+			{
+			    example::pir::sensor(21, 20, gpio_manager);
+				break;
+			}
+
+			case 5:
+			{
+			    example::temperature::temperature_humidity_sensor(18, gpio_manager);
+				break;
+			}
+
+			default:
+			{
+			    std::cout << "Invalid selection " << std::endl
+			              << "  Please run application again." << std::endl;
+				break;
+			}
 		}
-
-		case 2: {
-			rgbLed(gpioManager);
-			break;
-		}
-
-		case 3: {
-			stepperMotor(gpioManager);
-			break;
-		}
-
-		case 4: {
-			pirSensor(gpioManager);
-			break;
-		}
-
-		case 5: {
-			temperatureHumiditySensor(gpioManager);
-			break;
-		}
-
-		default: {
-			printf("Invalid selection \n "
-				   "  Please run application again. \n");
-			break;
-		}
+	}
+	catch (common::error::Application_error &ex)
+	{
+		std::cout << "Error occurred during sample execution:" << std::endl
+				<< ex.get_message() << std::endl;
 	}
 
 	return 0;
