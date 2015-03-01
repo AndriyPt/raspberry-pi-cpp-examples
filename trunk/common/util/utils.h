@@ -14,15 +14,15 @@ template <typename T>
 T parse_string(std::string value)
 {
 
-	std::stringstream string_stream;
+    std::stringstream string_stream;
 
-	string_stream << value;
+    string_stream << value;
 
-	T result;
+    T result;
 
-	string_stream >> result;
+    string_stream >> result;
 
-	return result;
+    return result;
 }
 
 template <typename T>
