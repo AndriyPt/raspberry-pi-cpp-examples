@@ -11,14 +11,14 @@ namespace gpio
 class GPIO_manager {
 
 public:
-	GPIO_manager();
+    GPIO_manager();
 
-	void set_read_mode(uint8_t pin);
+    void set_read_mode(uint8_t pin);
 
-	bool read(uint8_t pin);
-	void write(uint8_t pin, bool value);
+    bool read(uint8_t pin);
+    void write(uint8_t pin, bool value);
 
-	virtual ~GPIO_manager();
+    virtual ~GPIO_manager();
 
 private:
     const int block_size;
