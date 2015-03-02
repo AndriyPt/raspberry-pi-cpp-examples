@@ -15,7 +15,7 @@ void temperature_humidity_sensor(uint8_t pin, common::gpio::GPIO_manager &gpio_m
 {
     const uint32_t max_iterations = 32000;
 
-    const uint8_t data_count = 5 + 40 * 2;
+    const uint8_t data_count = 1 + 41 * 2;
     uint32_t data_counts[data_count] = { 0 };
 
     common::util::Max_priority max_priority;
@@ -55,24 +55,23 @@ void temperature_humidity_sensor(uint8_t pin, common::gpio::GPIO_manager &gpio_m
     threshold /= data_count - 3;
 
     uint8_t data[5] = { 0 };
-    for (int i = 4; data_count != i; i += 2)
+    for (int i = 4; i < data_count; i += 2)
     {
         int index = (i - 4) >> 4;
         data[index] <<= 1;
-        if (data_counts[i] >= threshold) {
+        if (data_counts[i] >= threshold)
+        {
             data[index] |= 1;
         }
     }
-
-    std::cout << "Data: " << data[0] << data[1] << data[2] << data[3] << data[4] << std::endl;
 
     if (data[4] != ((data[0] + data[1] + data[2] + data[3]) & 0xFF))
     {
         common::error::Application_error::raise("Checksum of received data failed");
     }
 
-    std::cout << "Temperature "<< data[2] << "." << data[3]
-              << "C, humidity " << data[0] << "." << data[1] << "%" << std::endl;
+    std::cout << "Temperature "<< (int) data[2] << "." << (int) data[3]
+              << "C, humidity " << (int) data[0] << "." << (int) data[1] << "%" << std::endl;
 }
 
 }
