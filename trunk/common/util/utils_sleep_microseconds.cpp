@@ -10,7 +10,7 @@ namespace util
 
 void sleep_microseconds(uint32_t microseconds)
 {
-    std::this_thread::sleep_for(std::chrono::microseconds(microseconds));
+  std::this_thread::sleep_for(std::chrono::microseconds(microseconds));
 }
 
 }

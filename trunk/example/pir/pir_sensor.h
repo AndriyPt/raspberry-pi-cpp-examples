@@ -10,7 +10,6 @@ namespace pir
 
 void sensor(uint8_t led_pin, uint8_t sensor_pin, common::gpio::GPIO_manager &gpio_manager);
 
-
 }
 }
 

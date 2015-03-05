@@ -16,30 +16,29 @@ class Application_error : public std::exception
 {
 public:
 
-    virtual ~Application_error() throw ()
-    {
-    }
+  virtual ~Application_error() throw ()
+  {
+  }
 
-    std::string get_message()
-    {
-        return this->message;
-    }
+  std::string get_message()
+  {
+    return this->message;
+  }
 
-    template <typename... Arguments>
-    static void raise(Arguments... arguments)
+  template<typename ... Arguments>
+    static void raise(Arguments ... arguments)
     {
-        throw Application_error(common::util::concat(arguments...));
+      throw Application_error(common::util::concat(arguments...));
     }
 
 private:
 
-    Application_error(std::string value)
-    {
-        this->message = value;
-    }
+  Application_error(std::string value)
+  {
+    this->message = value;
+  }
 
-
-    std::string message;
+  std::string message;
 };
 
 }

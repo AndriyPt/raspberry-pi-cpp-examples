@@ -9,14 +9,14 @@ namespace util
 class Max_priority
 {
 public:
-    Max_priority();
-    void set_default_priority();
-    ~Max_priority();
+  Max_priority();
+  void set_default_priority();
+  ~Max_priority();
 
 private:
-    void set_max_priority();
+  void set_max_priority();
 
-    bool default_priority;
+  bool default_priority;
 };
 
 }
